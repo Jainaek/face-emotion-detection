@@ -24,7 +24,19 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 # -----------------------------
 # 2. Load trained model
 # -----------------------------
-model = tf.keras.models.load_model("FACE_DETECTION/face_emotionModel.h5")
+import os
+from tensorflow.keras.models import load_model
+
+# Get the folder where app.py is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Build full path to the model
+model_path = os.path.join(BASE_DIR, "face_emotionModel.h5")
+
+# Load the model
+model = load_model(model_path)
+
+
 
 
 
