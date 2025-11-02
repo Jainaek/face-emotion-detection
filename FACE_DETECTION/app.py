@@ -22,7 +22,9 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 # -----------------------------
 # 2. Load trained model
 # -----------------------------
-model = load_model('face_emotionModel.h5')
+model = tf.keras.models.load_model("FACE_DETECTION/face_emotionModel.h5")
+
+
 
 # Emotion labels (must match training order)
 emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
@@ -117,5 +119,8 @@ def submit():
 # -----------------------------
 # 6. Run the app
 # -----------------------------
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
+
